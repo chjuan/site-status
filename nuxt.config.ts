@@ -2,6 +2,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import Components from "unplugin-vue-components/vite";
 import pkg from "./package.json";
+import yn from "yn";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
@@ -13,7 +14,7 @@ const siteConfig = {
   siteLogo: process.env.SITE_LOGO || "/favicon.ico",
   siteIcp: process.env.SITE_ICP || "",
   countDays: Number(process.env.COUNT_DAYS || 60),
-  showLink: process.env.SHOW_LINK === "true" || true,
+  showLink: yn(process.env.SHOW_LINK, { default: true }),
   platform: process.env.DEPLOYMENT_PLATFORM || "cloudflare",
   version: pkg.version,
 };
