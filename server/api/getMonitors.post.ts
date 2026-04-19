@@ -81,13 +81,17 @@ export default defineEventHandler(async (event): Promise<MonitorsResult> => {
       logs_end_date: end,
       custom_uptime_ranges: ranges,
     };
+    // 读取CF环境变量
+    const env = event.context.cloudflare?.env;
+    const showLinkDebug = env ? env.SHOW_LINK : "no_cf_env";
+
     // 尝试获取
     const result = await $fetch(apiUrl + "getMonitors", {
       method: "POST",
       body,
     });
     // 处理数据
-    const data = formatSiteData(result, dates);
+    const data = formatSiteData(result, dates, showLinkDebug);
     // 缓存数据
     setCache(cacheKey, data, 1000 * 60);
     return {

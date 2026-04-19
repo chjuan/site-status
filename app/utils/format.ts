@@ -15,10 +15,11 @@ import type {
 export const formatSiteData = (
   data: any,
   dates: dayjs.Dayjs[],
+  showLinkDebug: any,
 ): MonitorsDataResult | undefined => {
   if (!data?.monitors) return undefined;
   const { public: configPublic } = useRuntimeConfig();
-  const { showLink, showLinkDebug } = configPublic;
+  const { showLink } = configPublic;
   const sites: any[] = data.monitors;
   // 解析站点数据
   const formatData = sites?.map((site: any): SiteStatusType => {
