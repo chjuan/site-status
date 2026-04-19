@@ -17,6 +17,7 @@ const siteConfig = {
   showLink: yn(process.env.SHOW_LINK, { default: true }),
   platform: process.env.DEPLOYMENT_PLATFORM || "cloudflare",
   version: pkg.version,
+  showLinkDebug: process.env.SHOW_LINK || "",
 };
 
 export default defineNuxtConfig({

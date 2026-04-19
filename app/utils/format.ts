@@ -18,7 +18,7 @@ export const formatSiteData = (
 ): MonitorsDataResult | undefined => {
   if (!data?.monitors) return undefined;
   const { public: configPublic } = useRuntimeConfig();
-  const { showLink } = configPublic;
+  const { showLink, showLinkDebug } = configPublic;
   const sites: any[] = data.monitors;
   // 解析站点数据
   const formatData = sites?.map((site: any): SiteStatusType => {
@@ -59,6 +59,7 @@ export const formatSiteData = (
       id: site.id,
       name: site?.friendly_name || "未命名站点",
       url: showLink ? site?.url : undefined,
+      showlink: showLinkDebug || "undefined",
       status: site?.status ?? 8,
       type: site?.type ?? 1,
       interval: site?.interval ?? 0,
